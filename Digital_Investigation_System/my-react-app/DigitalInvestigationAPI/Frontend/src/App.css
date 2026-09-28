@@ -1,0 +1,922 @@
+/* =========================================================
+   TRACEPOINT INVESTIGATIONS
+   DARK DIGITAL FORENSICS DESIGN
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 20% 10%, rgba(0, 119, 255, 0.10), transparent 30%), radial-gradient(circle at 80% 30%, rgba(0, 191, 255, 0.07), transparent 30%), #030b14;
+    color: #f5f9ff;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    background: rgba(3, 12, 22, 0.96);
+    border-bottom: 1px solid rgba(0, 157, 255, 0.25);
+    min-height: 76px;
+    padding: 18px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+    .logo::after {
+        content: "INVESTIGATIONS";
+        display: block;
+        color: #08a9ff;
+        font-size: 7px;
+        letter-spacing: 3px;
+        margin-top: 2px;
+        text-align: left;
+    }
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .navbar nav a {
+        color: #a9b8ca;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 17px;
+        border-radius: 7px;
+        transition: 0.25s ease;
+    }
+
+        .navbar nav a:hover {
+            color: white;
+            background: rgba(0, 125, 255, 0.14);
+        }
+
+
+/* =========================================================
+   GENERAL PAGE
+========================================================= */
+
+.page {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 55px 45px 80px;
+}
+
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+.hero-section {
+    position: relative;
+    min-height: 570px;
+    padding: 85px 60px 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(0, 157, 255, 0.22);
+    border-radius: 18px;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 119, 255, 0.15), transparent 45%), linear-gradient( 135deg, rgba(7, 20, 34, 0.96), rgba(2, 10, 18, 0.98) );
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        background: rgba(0, 153, 255, 0.08);
+        filter: blur(100px);
+        top: -180px;
+        right: -100px;
+        pointer-events: none;
+    }
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(0, 82, 255, 0.07);
+        filter: blur(90px);
+        bottom: -160px;
+        left: -100px;
+        pointer-events: none;
+    }
+
+.eyebrow {
+    position: relative;
+    z-index: 1;
+    color: #09a9ff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1.5;
+    margin: 0 0 18px;
+}
+
+.hero-section h1,
+.page-heading h1 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 25px;
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: #f8fbff;
+}
+
+.hero-section h1 {
+    max-width: 900px;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto 38px;
+    color: #91a7bd;
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #087cff, #00a8ff);
+    color: white;
+    padding: 14px 28px;
+    border: 1px solid rgba(83, 198, 255, 0.55);
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 119, 255, 0.25), inset 0 1px rgba(255, 255, 255, 0.2);
+    transition: 0.25s ease;
+}
+
+    .primary-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(0, 153, 255, 0.35), inset 0 1px rgba(255, 255, 255, 0.25);
+    }
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #087cff;
+    color: #32b8ff;
+    background: rgba(0, 119, 255, 0.05);
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+    .secondary-button:hover {
+        background: rgba(0, 119, 255, 0.14);
+        color: white;
+    }
+
+
+/* =========================================================
+   HOME WORKFLOW
+========================================================= */
+
+.workflow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.workflow-card,
+.case-card,
+.empty-card {
+    background: linear-gradient( 145deg, rgba(9, 27, 44, 0.95), rgba(4, 15, 26, 0.95) );
+    border: 1px solid rgba(0, 157, 255, 0.20);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.025);
+    transition: 0.25s ease;
+}
+
+    .workflow-card:hover {
+        border-color: rgba(0, 157, 255, 0.55);
+        transform: translateY(-3px);
+    }
+
+    .workflow-card span {
+        color: #08a9ff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .workflow-card h2 {
+        color: #f5f9ff;
+        margin: 18px 0 12px;
+        font-size: 20px;
+    }
+
+    .workflow-card p,
+    .empty-card p {
+        color: #839bb2;
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.page-heading {
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+    .page-heading .eyebrow {
+        margin-bottom: 10px;
+    }
+
+    .page-heading h1 {
+        font-size: 40px;
+        margin-bottom: 12px;
+    }
+
+    .page-heading p:last-child {
+        color: #839bb2;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+.content-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CASE PAGE
+========================================================= */
+
+.case-card {
+    border: 1px solid rgba(0, 157, 255, 0.25);
+}
+
+    .case-card:hover {
+        border-color: rgba(0, 157, 255, 0.55);
+    }
+
+.case-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.case-label {
+    color: #08a9ff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.case-card h2 {
+    color: #f5f9ff;
+    font-size: 27px;
+    margin: 10px 0;
+}
+
+.status-badge {
+    background: rgba(0, 210, 130, 0.10);
+    border: 1px solid rgba(0, 210, 130, 0.35);
+    color: #25d995;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.case-card-body {
+    margin: 25px 0;
+    color: #8da4b9;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.case-card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.empty-card {
+    text-align: center;
+}
+
+
+/* =========================================================
+   EVIDENCE PAGE
+========================================================= */
+
+.evidence-grid {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+
+/* =========================================================
+   EVIDENCE CARD
+========================================================= */
+
+.evidence-card {
+    width: 100%;
+    min-width: 0;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.22);
+    border-radius: 12px;
+    padding: 25px 20px 20px;
+    text-align: center;
+    min-height: 275px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.25s ease;
+}
+
+    .evidence-card:hover {
+        border-color: rgba(0, 157, 255, 0.55);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+
+
+/* =========================================================
+   EVIDENCE TITLE
+========================================================= */
+
+.evidence-card-header {
+    text-align: center;
+}
+
+    .evidence-card-header h2 {
+        color: #20b4ff;
+        font-size: 21px;
+        margin: 0 0 25px;
+    }
+
+
+/* =========================================================
+   EVIDENCE INFORMATION
+========================================================= */
+
+.evidence-card-body {
+    text-align: center;
+}
+
+    .evidence-card-body p {
+        color: #a4b6c8;
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 15px 0;
+    }
+
+    .evidence-card-body strong {
+        color: #f1f7fc;
+    }
+
+
+/* =========================================================
+   EXAMINE EVIDENCE BUTTON
+========================================================= */
+
+.evidence-card-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+    .evidence-card-actions .primary-button {
+        background: rgba(0, 119, 255, 0.12);
+        border: 1px solid #087cff;
+        color: #31b9ff;
+        padding: 9px 17px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: none;
+    }
+
+        .evidence-card-actions .primary-button:hover {
+            background: #087cff;
+            color: white;
+        }
+
+
+/* =========================================================
+   FIFTH EVIDENCE CARD
+========================================================= */
+
+.evidence-grid .evidence-card:nth-child(5) {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+}
+
+
+/* =========================================================
+   SELECTED EVIDENCE
+========================================================= */
+
+.selected-evidence {
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.25);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+    .selected-evidence h2 {
+        color: #20b4ff;
+        margin-bottom: 20px;
+    }
+
+    .selected-evidence p {
+        color: #8fa6bb;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   SUSPECT PAGE
+========================================================= */
+
+.suspect-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   SINGLE SELECT SUSPECT
+========================================================= */
+
+.suspect-selector {
+    width: 100%;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.25);
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+    .suspect-selector h2 {
+        color: #f5f9ff;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .suspect-selector p {
+        color: #879eb4;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   SUSPECT DROPDOWN
+========================================================= */
+
+.suspect-select {
+    width: 100%;
+    max-width: 500px;
+    padding: 14px 18px;
+    margin-top: 15px;
+    border: 1px solid #24506d;
+    border-radius: 8px;
+    background: #061522;
+    color: #eaf4ff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+    .suspect-select:hover {
+        border-color: #087cff;
+    }
+
+    .suspect-select:focus {
+        outline: none;
+        border-color: #08a9ff;
+        box-shadow: 0 0 0 3px rgba(0, 157, 255, 0.10);
+    }
+
+
+/* =========================================================
+   SELECTED SUSPECT
+========================================================= */
+
+.selected-suspect {
+    width: 100%;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.25);
+    border-radius: 14px;
+    padding: 35px;
+    margin-top: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    /* IMPORTANT:
+       Makes normal text inside the selected suspect
+       section light instead of black.
+    */
+    color: #dcecff;
+}
+
+    .selected-suspect h2 {
+        color: #20b4ff;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 28px;
+    }
+
+    .selected-suspect h3,
+    .selected-suspect h4,
+    .selected-suspect h5,
+    .selected-suspect h6 {
+        color: #f5f9ff;
+    }
+
+    .selected-suspect p {
+        color: #b5c7d8;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .selected-suspect span {
+        color: #b5c7d8;
+    }
+
+    .selected-suspect strong {
+        color: #ffffff;
+    }
+
+    .selected-suspect label {
+        color: #dcecff;
+    }
+
+    .selected-suspect div {
+        color: #dcecff;
+    }
+
+
+/* =========================================================
+   SUSPECT CARD
+========================================================= */
+
+.suspect-card {
+    width: 100%;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.22);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+    .suspect-card h2 {
+        color: #f5f9ff;
+        font-size: 26px;
+        margin: 10px 0;
+    }
+
+    .suspect-card p {
+        color: #8ca4b9;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+.suspect-card-actions {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   INVESTIGATION FORM
+========================================================= */
+
+.investigation-form {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.25);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #dcecff;
+        font-size: 14px;
+    }
+
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #254c66;
+        border-radius: 8px;
+        background: #061522;
+        color: #eaf4ff;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+    }
+
+    .form-group select {
+        cursor: pointer;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #087cff;
+            box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.10);
+        }
+
+.investigation-form .primary-button {
+    border: none;
+    cursor: pointer;
+}
+
+.investigation-message {
+    max-width: 750px;
+    margin: 20px auto 0;
+    padding: 15px;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.25);
+    border-radius: 8px;
+    text-align: center;
+    color: #dcecff;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020810;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #16405e;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #087cff;
+    }
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 800px) {
+
+    /* NAVBAR */
+
+    .navbar {
+        padding: 20px;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .navbar nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+        .navbar nav a {
+            font-size: 13px;
+            padding: 8px 11px;
+        }
+
+
+    /* PAGE */
+
+    .page {
+        padding: 35px 18px 60px;
+    }
+
+
+    /* HOME */
+
+    .hero-section {
+        min-height: 520px;
+        padding: 60px 22px;
+    }
+
+    .eyebrow {
+        font-size: 11px;
+        letter-spacing: 3px;
+        line-height: 1.6;
+    }
+
+    .hero-section h1,
+    .page-heading h1 {
+        font-size: 38px;
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin: 0 0 22px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+        line-height: 1.7;
+        max-width: 600px;
+        margin-bottom: 32px;
+    }
+
+
+    /* WORKFLOW */
+
+    .workflow {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+
+    /* PAGE HEADINGS */
+
+    .page-heading {
+        text-align: center;
+    }
+
+        .page-heading h1 {
+            font-size: 34px;
+        }
+
+
+    /* CASE */
+
+    .case-card-header {
+        flex-direction: column;
+    }
+
+    .case-card-actions {
+        flex-direction: column;
+    }
+
+        .case-card-actions a {
+            width: 100%;
+            text-align: center;
+        }
+
+
+    /* EVIDENCE */
+
+    .evidence-grid {
+        grid-template-columns: 1fr;
+    }
+
+        .evidence-grid .evidence-card:nth-child(5) {
+            grid-column: auto;
+            width: 100%;
+        }
+
+
+    /* SUSPECT */
+
+    .suspect-selector {
+        padding: 25px 20px;
+    }
+
+    .suspect-select {
+        max-width: 100%;
+    }
+
+    .selected-suspect {
+        padding: 25px 20px;
+    }
+
+
+    /* INVESTIGATION */
+
+    .investigation-form {
+        padding: 25px 20px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .navbar nav {
+        gap: 3px;
+    }
+
+        .navbar nav a {
+            font-size: 12px;
+            padding: 7px 8px;
+        }
+
+    .hero-section {
+        padding: 50px 18px;
+    }
+
+        .hero-section h1 {
+            font-size: 34px;
+        }
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+    .primary-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
