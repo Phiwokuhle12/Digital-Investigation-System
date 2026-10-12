@@ -14,7 +14,7 @@ html {
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle at 20% 10%, rgba(0, 119, 255, 0.10), transparent 30%), radial-gradient(circle at 80% 30%, rgba(0, 191, 255, 0.07), transparent 30%), #030b14;
+    background: radial-gradient( circle at 20% 10%, rgba(0, 119, 255, 0.10), transparent 30% ), radial-gradient( circle at 80% 30%, rgba(0, 191, 255, 0.07), transparent 30% ), #030b14;
     color: #f5f9ff;
     min-height: 100vh;
 }
@@ -26,11 +26,17 @@ a {
 
 /* =========================================================
    NAVBAR
+   COMPLETELY SMOOTH - NO HORIZONTAL LINE
 ========================================================= */
 
 .navbar {
-    background: rgba(3, 12, 22, 0.96);
-    border-bottom: 1px solid rgba(0, 157, 255, 0.25);
+    background: #030c16 !important;
+    border: 0 !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    outline: 0 !important;
     min-height: 76px;
     padding: 18px 45px;
     display: flex;
@@ -38,9 +44,27 @@ a {
     justify-content: space-between;
     position: sticky;
     top: 0;
-    z-index: 100;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.30);
 }
+
+    .navbar::before,
+    .navbar::after {
+        display: none !important;
+        content: none !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .navbar > * {
+        border-top: 0 !important;
+        border-bottom: 0 !important;
+    }
+
+
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo {
     color: white;
@@ -60,6 +84,11 @@ a {
         text-align: left;
     }
 
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
 .navbar nav {
     display: flex;
     align-items: center;
@@ -73,6 +102,8 @@ a {
         padding: 10px 17px;
         border-radius: 7px;
         transition: 0.25s ease;
+        border: 0 !important;
+        border-bottom: 0 !important;
     }
 
         .navbar nav a:hover {
@@ -108,7 +139,7 @@ a {
     text-align: center;
     border: 1px solid rgba(0, 157, 255, 0.22);
     border-radius: 18px;
-    background: radial-gradient(circle at 50% 0%, rgba(0, 119, 255, 0.15), transparent 45%), linear-gradient( 135deg, rgba(7, 20, 34, 0.96), rgba(2, 10, 18, 0.98) );
+    background: radial-gradient( circle at 50% 0%, rgba(0, 119, 255, 0.15), transparent 45% ), linear-gradient( 135deg, rgba(7, 20, 34, 0.96), rgba(2, 10, 18, 0.98) );
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px rgba(255, 255, 255, 0.03);
     overflow: hidden;
 }
@@ -137,6 +168,11 @@ a {
         pointer-events: none;
     }
 
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
 .eyebrow {
     position: relative;
     z-index: 1;
@@ -147,6 +183,11 @@ a {
     line-height: 1.5;
     margin: 0 0 18px;
 }
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
 
 .hero-section h1,
 .page-heading h1 {
@@ -163,6 +204,11 @@ a {
 .hero-section h1 {
     max-width: 900px;
 }
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
 
 .hero-text {
     position: relative;
@@ -185,7 +231,7 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #087cff, #00a8ff);
+    background: linear-gradient( 135deg, #087cff, #00a8ff );
     color: white;
     padding: 14px 28px;
     border: 1px solid rgba(83, 198, 255, 0.55);
@@ -496,8 +542,8 @@ a {
     }
 
     .selected-evidence p {
-        color: #8fa6bb;
-        font-size: 15px;
+        color: #dcecff;
+        font-size: 17px;
         line-height: 1.7;
     }
 
@@ -514,7 +560,172 @@ a {
 
 
 /* =========================================================
-   SINGLE SELECT SUSPECT
+   SUSPECT CARDS
+========================================================= */
+
+.suspect-card {
+    width: 100%;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
+    border: 1px solid rgba(0, 157, 255, 0.22);
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 0;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transition: 0.25s ease;
+}
+
+    .suspect-card:hover {
+        border-color: rgba(0, 157, 255, 0.55);
+        transform: translateY(-2px);
+    }
+
+    .suspect-card h2 {
+        color: #f5f9ff;
+        font-size: 26px;
+        margin: 10px 0 20px;
+    }
+
+    .suspect-card h4 {
+        color: #f5f9ff;
+        font-size: 17px;
+        margin: 0 0 25px;
+    }
+
+    .suspect-card p {
+        color: #b6c7d8;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+
+/* =========================================================
+   SELECT SUSPECT BUTTON
+========================================================= */
+
+.suspect-card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.select-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 119, 255, 0.12);
+    border: 1px solid #087cff;
+    color: #31b9ff;
+    padding: 9px 17px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: none;
+    transition: 0.25s ease;
+}
+
+    .select-button:hover {
+        background: #087cff;
+        color: white;
+        transform: none;
+    }
+
+
+/* =========================================================
+   SELECTED SUSPECT
+   NO BORDER
+   LIGHT BLUE HEADING
+   BRIGHT GREY MESSAGE
+========================================================= */
+
+.selected-suspect {
+    width: 100%;
+    background: linear-gradient( 135deg, rgba(8, 124, 255, 0.20), rgba(0, 168, 255, 0.12) );
+    border: none !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    outline: none !important;
+    border-radius: 14px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 12px 30px rgba(0, 119, 255, 0.12);
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+
+    /* Remove all possible lines */
+    .selected-suspect::before,
+    .selected-suspect::after {
+        content: none !important;
+        display: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+
+    /* =========================================================
+   SELECTED SUSPECT TITLE
+   MUST BE LIGHT BLUE
+========================================================= */
+
+    .selected-suspect h2,
+    .selected-suspect h2:first-child {
+        color: #58c7ff !important;
+        margin: 0 0 15px;
+        font-size: 28px;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(88, 199, 255, 0.12);
+    }
+
+
+    /* =========================================================
+   SELECTED SUSPECT MESSAGE
+   MUST BE BRIGHT / LIGHT GREY
+========================================================= */
+
+    .selected-suspect p,
+    .selected-suspect p:last-child {
+        color: #f1f5f9 !important;
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.7;
+        font-weight: 500;
+        text-shadow: 0 0 8px rgba(241, 245, 249, 0.08);
+    }
+
+
+    /* =========================================================
+   EXTRA PROTECTION AGAINST BLACK TEXT
+========================================================= */
+
+    .selected-suspect h1,
+    .selected-suspect h2,
+    .selected-suspect h3,
+    .selected-suspect h4,
+    .selected-suspect h5,
+    .selected-suspect h6,
+    .selected-suspect p,
+    .selected-suspect span {
+        background: transparent !important;
+    }
+
+    .selected-suspect h2 {
+        color: #58c7ff !important;
+    }
+
+    .selected-suspect p {
+        color: #f1f5f9 !important;
+    }
+
+
+/* =========================================================
+   SUSPECT SELECTOR
 ========================================================= */
 
 .suspect-selector {
@@ -534,7 +745,7 @@ a {
     }
 
     .suspect-selector p {
-        color: #879eb4;
+        color: #b6c7d8;
         font-size: 15px;
         line-height: 1.7;
     }
@@ -549,110 +760,29 @@ a {
     max-width: 500px;
     padding: 14px 18px;
     margin-top: 15px;
-    border: 1px solid #24506d;
+    border: 1px solid rgba(0, 157, 255, 0.22);
     border-radius: 8px;
-    background: #061522;
+    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
     color: #eaf4ff;
     font-size: 15px;
     cursor: pointer;
+    transition: 0.25s ease;
 }
 
     .suspect-select:hover {
-        border-color: #087cff;
+        border-color: rgba(0, 157, 255, 0.55);
     }
 
     .suspect-select:focus {
         outline: none;
-        border-color: #08a9ff;
-        box-shadow: 0 0 0 3px rgba(0, 157, 255, 0.10);
+        border-color: #087cff;
+        box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.10);
     }
 
-
-/* =========================================================
-   SELECTED SUSPECT
-========================================================= */
-
-.selected-suspect {
-    width: 100%;
-    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
-    border: 1px solid rgba(0, 157, 255, 0.25);
-    border-radius: 14px;
-    padding: 35px;
-    margin-top: 30px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    /* IMPORTANT:
-       Makes normal text inside the selected suspect
-       section light instead of black.
-    */
-    color: #dcecff;
-}
-
-    .selected-suspect h2 {
-        color: #20b4ff;
-        margin-top: 0;
-        margin-bottom: 20px;
-        font-size: 28px;
+    .suspect-select option {
+        background: #061522;
+        color: #eaf4ff;
     }
-
-    .selected-suspect h3,
-    .selected-suspect h4,
-    .selected-suspect h5,
-    .selected-suspect h6 {
-        color: #f5f9ff;
-    }
-
-    .selected-suspect p {
-        color: #b5c7d8;
-        font-size: 15px;
-        line-height: 1.7;
-    }
-
-    .selected-suspect span {
-        color: #b5c7d8;
-    }
-
-    .selected-suspect strong {
-        color: #ffffff;
-    }
-
-    .selected-suspect label {
-        color: #dcecff;
-    }
-
-    .selected-suspect div {
-        color: #dcecff;
-    }
-
-
-/* =========================================================
-   SUSPECT CARD
-========================================================= */
-
-.suspect-card {
-    width: 100%;
-    background: linear-gradient( 145deg, rgba(8, 27, 44, 0.96), rgba(3, 14, 24, 0.96) );
-    border: 1px solid rgba(0, 157, 255, 0.22);
-    border-radius: 14px;
-    padding: 30px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-}
-
-    .suspect-card h2 {
-        color: #f5f9ff;
-        font-size: 26px;
-        margin: 10px 0;
-    }
-
-    .suspect-card p {
-        color: #8ca4b9;
-        font-size: 15px;
-        line-height: 1.6;
-    }
-
-.suspect-card-actions {
-    margin-top: 20px;
-}
 
 
 /* =========================================================
@@ -729,6 +859,74 @@ a {
 
 
 /* =========================================================
+   INVESTIGATOR SIGNATURE
+========================================================= */
+
+.signature-group {
+    margin-top: 25px;
+}
+
+.signature-instruction {
+    color: #aebfd0;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+
+/* =========================================================
+   SIGNATURE CANVAS
+========================================================= */
+
+.signature-canvas {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    background: #ffffff;
+    border: 1px solid #24506d;
+    border-radius: 8px;
+    cursor: crosshair;
+    touch-action: none;
+    transition: 0.25s ease;
+}
+
+    .signature-canvas:hover {
+        border-color: #087cff;
+    }
+
+    .signature-canvas:focus {
+        outline: none;
+        border-color: #08a9ff;
+        box-shadow: 0 0 0 3px rgba(0, 157, 255, 0.10);
+    }
+
+
+/* =========================================================
+   CLEAR SIGNATURE BUTTON
+========================================================= */
+
+.clear-signature-button {
+    margin-top: 10px;
+    padding: 9px 17px;
+    border: 1px solid #24506d;
+    border-radius: 7px;
+    background: rgba(0, 119, 255, 0.05);
+    color: #31b9ff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+    .clear-signature-button:hover {
+        background: rgba(0, 119, 255, 0.14);
+        border-color: #087cff;
+        color: white;
+    }
+
+
+/* =========================================================
    SCROLLBAR
 ========================================================= */
 
@@ -762,6 +960,9 @@ a {
         padding: 20px;
         flex-direction: column;
         gap: 18px;
+        background: #030c16 !important;
+        border: 0 !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     }
 
     .logo {
@@ -877,13 +1078,34 @@ a {
 
     .selected-suspect {
         padding: 25px 20px;
+        border: none !important;
+        outline: none !important;
     }
+
+        .selected-suspect h2 {
+            color: #58c7ff !important;
+            font-size: 25px;
+        }
+
+        .selected-suspect p {
+            color: #f1f5f9 !important;
+            font-size: 16px;
+        }
 
 
     /* INVESTIGATION */
 
     .investigation-form {
         padding: 25px 20px;
+    }
+
+    .signature-canvas {
+        width: 100%;
+        height: 180px;
+    }
+
+    .clear-signature-button {
+        width: auto;
     }
 }
 
@@ -894,14 +1116,20 @@ a {
 
 @media (max-width: 450px) {
 
-    .navbar nav {
-        gap: 3px;
+    .navbar {
+        background: #030c16 !important;
+        border: 0 !important;
+        border-bottom: 0 !important;
     }
 
-        .navbar nav a {
-            font-size: 12px;
-            padding: 7px 8px;
+        .navbar nav {
+            gap: 3px;
         }
+
+            .navbar nav a {
+                font-size: 12px;
+                padding: 7px 8px;
+            }
 
     .hero-section {
         padding: 50px 18px;
@@ -919,4 +1147,25 @@ a {
         width: 100%;
         max-width: 300px;
     }
+
+    .signature-canvas {
+        height: 160px;
+    }
+
+    .selected-suspect {
+        padding: 25px 18px;
+        background: linear-gradient( 135deg, rgba(8, 124, 255, 0.20), rgba(0, 168, 255, 0.12) );
+        border: none !important;
+        outline: none !important;
+    }
+
+        .selected-suspect h2 {
+            color: #58c7ff !important;
+            font-size: 24px;
+        }
+
+        .selected-suspect p {
+            color: #f1f5f9 !important;
+            font-size: 16px;
+        }
 }

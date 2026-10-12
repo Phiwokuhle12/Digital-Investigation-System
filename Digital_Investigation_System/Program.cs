@@ -1,8 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using DigitalInvestigationAPI.Data;
 using DigitalInvestigationAPI.Repositories;
+using DigitalInvestigationAPI.Services;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 // =====================================================
 // SERVICES
@@ -27,6 +31,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<InvestigationRepository>();
+
+// Register Investigation Docket Service
+builder.Services.AddScoped<InvestigationDocketService>();
 
 // Add Swagger
 builder.Services.AddSwaggerGen();

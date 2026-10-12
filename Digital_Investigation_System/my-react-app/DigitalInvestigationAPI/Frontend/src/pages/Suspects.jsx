@@ -54,7 +54,7 @@ function Suspects() {
                 </div>
 
                 {selectedSuspect && (
-                    <div className="empty-card">
+                    <div className="selected-suspect">
                         <h2>Selected Suspect</h2>
 
                         <p>

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function InvestigationForm({
     suspects,
     selectedSuspect,
@@ -6,6 +8,22 @@ function InvestigationForm({
     onConclusionChange,
     onSubmit
 }) {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const handleSubmit = async () => {
+        if (isSubmitting) {
+            return
+        }
+
+        setIsSubmitting(true)
+
+        try {
+            await onSubmit()
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
     return (
         <div className="investigation-form">
 
@@ -18,7 +36,9 @@ function InvestigationForm({
                     id="suspect"
                     className="suspect-select"
                     value={selectedSuspect}
-                    onChange={(e) => onSuspectChange(e.target.value)}
+                    onChange={(e) =>
+                        onSuspectChange(e.target.value)
+                    }
                 >
                     <option value="">
                         Select Suspect
@@ -51,12 +71,18 @@ function InvestigationForm({
                 />
             </div>
 
+            {/* Digital verification notice */}
+
+
             <button
                 type="button"
                 className="primary-button"
-                onClick={onSubmit}
+                onClick={handleSubmit}
+                disabled={isSubmitting}
             >
-                Submit Investigation
+                {isSubmitting
+                    ? 'Generating Docket...'
+                    : 'Submit Investigation'}
             </button>
 
         </div>

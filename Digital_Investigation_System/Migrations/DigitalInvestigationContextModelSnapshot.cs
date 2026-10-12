@@ -45,6 +45,15 @@ namespace DigitalInvestigationAPI.Migrations
                     b.HasKey("CaseID");
 
                     b.ToTable("Cases");
+
+                    b.HasData(
+                        new
+                        {
+                            CaseID = 1,
+                            CaseName = "The Missing Prototype",
+                            Description = "A technology prototype has disappeared from the research laboratory.",
+                            Status = "OPEN"
+                        });
                 });
 
             modelBuilder.Entity("DigitalInvestigationAPI.Models.EvidenceClass", b =>
@@ -70,6 +79,43 @@ namespace DigitalInvestigationAPI.Migrations
                     b.HasKey("EvidenceID");
 
                     b.ToTable("Evidence");
+
+                    b.HasData(
+                        new
+                        {
+                            EvidenceID = 1,
+                            Description = "Jamie Smith's access card was used to enter the research laboratory at 23:41.",
+                            Location = "Security Office",
+                            Title = "Security Access Log"
+                        },
+                        new
+                        {
+                            EvidenceID = 2,
+                            Description = "CCTV footage shows a person entering the laboratory at approximately 23:43. The person's face cannot be clearly identified.",
+                            Location = "Research Laboratory",
+                            Title = "CCTV Report"
+                        },
+                        new
+                        {
+                            EvidenceID = 3,
+                            Description = "A partial fingerprint was found on the prototype storage cabinet. The fingerprint belongs to a person who regularly works in the laboratory.",
+                            Location = "Research Laboratory",
+                            Title = "Fingerprint Report"
+                        },
+                        new
+                        {
+                            EvidenceID = 4,
+                            Description = "An email sent shortly before the incident states: \"The prototype must be moved before tomorrow's demonstration.\"",
+                            Location = "Archive Room",
+                            Title = "Email Message"
+                        },
+                        new
+                        {
+                            EvidenceID = 5,
+                            Description = "A photograph taken after the incident shows that the prototype cabinet was open and the laboratory lights were switched off.",
+                            Location = "Research Laboratory",
+                            Title = "Photograph"
+                        });
                 });
 
             modelBuilder.Entity("DigitalInvestigationAPI.Models.InvestigationClass", b =>
@@ -121,6 +167,29 @@ namespace DigitalInvestigationAPI.Migrations
                     b.HasKey("SuspectID");
 
                     b.ToTable("Suspects");
+
+                    b.HasData(
+                        new
+                        {
+                            SuspectID = 1,
+                            Description = "Alex developed the software used by the prototype and had access to the laboratory.",
+                            Occupation = "Software Developer",
+                            SuspectName = "Alex Morgan"
+                        },
+                        new
+                        {
+                            SuspectID = 2,
+                            Description = "Jamie was responsible for security at the building on the night of the incident.",
+                            Occupation = "Security Officer",
+                            SuspectName = "Jamie Smith"
+                        },
+                        new
+                        {
+                            SuspectID = 3,
+                            Description = "Taylor worked with the research team and had access to the laboratory during working hours.",
+                            Occupation = "Research Assistant",
+                            SuspectName = "Taylor Williams"
+                        });
                 });
 #pragma warning restore 612, 618
         }

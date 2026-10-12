@@ -49,12 +49,16 @@ function Investigation() {
     // Submit investigation
     const handleSubmit = async () => {
         if (!selectedSuspect || !conclusion.trim()) {
-            setMessage('Please select a suspect and enter a conclusion.')
+            setMessage(
+                'Please select a suspect and enter a conclusion.'
+            )
             return
         }
 
         if (cases.length === 0) {
-            setMessage('No case is available for this investigation.')
+            setMessage(
+                'No case is available for this investigation.'
+            )
             return
         }
 
@@ -80,16 +84,85 @@ function Investigation() {
             )
 
             if (response.ok) {
-                setMessage('Investigation submitted successfully.')
+
+                // =================================================
+                // RECEIVE THE GENERATED PDF
+                // =================================================
+
+                const pdfBlob = await response.blob()
+
+                // =================================================
+                // CREATE A TEMPORARY DOWNLOAD URL
+                // =================================================
+
+                const downloadUrl =
+                    window.URL.createObjectURL(pdfBlob)
+
+                // =================================================
+                // CREATE DOWNLOAD LINK
+                // =================================================
+
+                const link =
+                    document.createElement('a')
+
+                link.href = downloadUrl
+
+                // Use the filename sent by the API if available
+                const contentDisposition =
+                    response.headers.get('Content-Disposition')
+
+                let fileName =
+                    'TracePoint-Investigation-Docket.pdf'
+
+                if (contentDisposition) {
+                    const fileNameMatch =
+                        contentDisposition.match(
+                            /filename="?([^"]+)"?/
+                        )
+
+                    if (fileNameMatch) {
+                        fileName = fileNameMatch[1]
+                    }
+                }
+
+                link.download = fileName
+
+                document.body.appendChild(link)
+
+                link.click()
+
+                // =================================================
+                // CLEAN UP
+                // =================================================
+
+                link.remove()
+
+                window.URL.revokeObjectURL(downloadUrl)
+
+                // =================================================
+                // RESET FORM
+                // =================================================
+
+                setMessage(
+                    'Investigation submitted successfully. Docket generated.'
+                )
+
                 setSelectedSuspect('')
                 setConclusion('')
             } else {
                 const error = await response.text()
-                setMessage(error || 'Failed to submit investigation.')
+
+                setMessage(
+                    error ||
+                    'Failed to submit investigation.'
+                )
             }
         } catch (error) {
             console.error(error)
-            setMessage('Error connecting to the investigation API.')
+
+            setMessage(
+                'Error connecting to the investigation API.'
+            )
         }
     }
 
@@ -97,13 +170,22 @@ function Investigation() {
         <div className="page">
 
             <div className="page-heading">
-                <p className="eyebrow">INVESTIGATION</p>
 
-                <h1>Complete Investigation</h1>
+                <p className="eyebrow">
+                    INVESTIGATION
+                </p>
+
+                <h1>
+                    Complete Investigation
+                </h1>
 
                 <p>
-                    Select a suspect and enter your investigation conclusion.
+                    Select a suspect and enter your
+                    investigation conclusion. A TracePoint
+                    investigation docket will be generated
+                    automatically when you submit.
                 </p>
+
             </div>
 
             <InvestigationForm
