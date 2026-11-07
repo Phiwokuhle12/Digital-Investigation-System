@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from 'react'
 import CaseCard from '../Components/CaseCard'
+import { apiUrl } from '../api'
 
 function Cases() {
     const [cases, setCases] = useState([])
@@ -7,7 +9,7 @@ function Cases() {
     const [error, setError] = useState('')
 
     useEffect(() => {
-        fetch('https://localhost:7031/api/Cases')
+        fetch(apiUrl('/api/Cases'))
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(

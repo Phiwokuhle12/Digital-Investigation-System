@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from 'react'
 import EvidenceCard from '../Components/EvidenceCard'
+import { apiUrl } from '../api'
 
 function Evidence() {
     const [evidence, setEvidence] = useState([])
@@ -8,7 +10,7 @@ function Evidence() {
     const [error, setError] = useState('')
 
     useEffect(() => {
-        fetch('https://localhost:7031/api/Evidence')
+        fetch(apiUrl('/api/Evidence'))
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Failed to retrieve evidence')

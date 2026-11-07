@@ -1,12 +1,14 @@
+
 import { useEffect, useState } from 'react'
 import SuspectCard from '../Components/SuspectCard'
+import { apiUrl } from '../api'
 
 function Suspects() {
     const [suspects, setSuspects] = useState([])
     const [selectedSuspect, setSelectedSuspect] = useState(null)
 
     useEffect(() => {
-        fetch('https://localhost:7031/api/Suspects')
+        fetch(apiUrl('/api/Suspects'))
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Failed to retrieve suspects')

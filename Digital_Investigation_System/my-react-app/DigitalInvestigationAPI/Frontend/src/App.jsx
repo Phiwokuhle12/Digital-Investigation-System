@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+
+import { HashRouter, Routes, Route, Link } from 'react-router-dom'
 import Case from './pages/Case'
 import Suspects from './pages/Suspects'
 import Evidence from './pages/Evidence'
@@ -31,7 +32,7 @@ function Home() {
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <header className="navbar">
                 <Link to="/" className="logo">
                     TRACEPOINT
@@ -53,7 +54,7 @@ function App() {
                 <Route path="/evidence" element={<Evidence />} />
                 <Route path="/investigation" element={<Investigation />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 

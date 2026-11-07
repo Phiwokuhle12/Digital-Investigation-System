@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from 'react'
 import InvestigationForm from '../Components/InvestigationForm'
+import { apiUrl } from '../api'
 
 function Investigation() {
     const [suspects, setSuspects] = useState([])
@@ -10,7 +12,7 @@ function Investigation() {
 
     // Get suspects from the API
     useEffect(() => {
-        fetch('https://localhost:7031/api/Suspects')
+        fetch(apiUrl('/api/Suspects'))
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Unable to load suspects.')
@@ -29,7 +31,7 @@ function Investigation() {
 
     // Get cases from the API
     useEffect(() => {
-        fetch('https://localhost:7031/api/Cases')
+        fetch(apiUrl('/api/Cases'))
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Unable to load cases.')
@@ -73,7 +75,7 @@ function Investigation() {
 
         try {
             const response = await fetch(
-                'https://localhost:7031/api/Investigation',
+                apiUrl('/api/Investigation'),
                 {
                     method: 'POST',
                     headers: {
@@ -85,23 +87,14 @@ function Investigation() {
 
             if (response.ok) {
 
-                // =================================================
                 // RECEIVE THE GENERATED PDF
-                // =================================================
-
                 const pdfBlob = await response.blob()
 
-                // =================================================
                 // CREATE A TEMPORARY DOWNLOAD URL
-                // =================================================
-
                 const downloadUrl =
                     window.URL.createObjectURL(pdfBlob)
 
-                // =================================================
                 // CREATE DOWNLOAD LINK
-                // =================================================
-
                 const link =
                     document.createElement('a')
 
@@ -131,18 +124,12 @@ function Investigation() {
 
                 link.click()
 
-                // =================================================
                 // CLEAN UP
-                // =================================================
-
                 link.remove()
 
                 window.URL.revokeObjectURL(downloadUrl)
 
-                // =================================================
                 // RESET FORM
-                // =================================================
-
                 setMessage(
                     'Investigation submitted successfully. Docket generated.'
                 )
