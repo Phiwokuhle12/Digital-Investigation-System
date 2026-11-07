@@ -1,4 +1,5 @@
-﻿using DigitalInvestigationAPI.Data;
+﻿
+using DigitalInvestigationAPI.Data;
 using DigitalInvestigationAPI.Models;
 using DigitalInvestigationAPI.Repositories;
 using DigitalInvestigationAPI.Services;
@@ -109,7 +110,7 @@ namespace DigitalInvestigationAPI.Controllers
             // SET INVESTIGATION DATE
             // =================================================
 
-            newInvestigation.DateStarted = DateTime.Now;
+            newInvestigation.DateStarted = DateTime.UtcNow;
 
             // =================================================
             // SAVE INVESTIGATION

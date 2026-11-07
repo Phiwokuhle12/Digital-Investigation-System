@@ -1,3 +1,4 @@
+
 using Microsoft.EntityFrameworkCore;
 using DigitalInvestigationAPI.Data;
 using DigitalInvestigationAPI.Repositories;
@@ -15,13 +16,16 @@ QuestPDF.Settings.License = LicenseType.Community;
 // Add Controllers
 builder.Services.AddControllers();
 
-// Allow React frontend to access the API
+// Configure CORS for React frontend
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
+            .WithOrigins(
+                "http://localhost:5173",
+                "https://phiwokuhle12.github.io"
+            )
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -30,6 +34,7 @@ builder.Services.AddCors(options =>
 // Add API Explorer
 builder.Services.AddEndpointsApiExplorer();
 
+// Register repository
 builder.Services.AddScoped<InvestigationRepository>();
 
 // Register Investigation Docket Service
@@ -38,9 +43,9 @@ builder.Services.AddScoped<InvestigationDocketService>();
 // Add Swagger
 builder.Services.AddSwaggerGen();
 
-// Register Entity Framework Core DbContext
+// Register PostgreSQL DbContext
 builder.Services.AddDbContext<DigitalInvestigationContext>(options =>
-    options.UseSqlServer(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
@@ -61,9 +66,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// HTTPS redirection
 app.UseHttpsRedirection();
 
-// Enable CORS for React
+// Enable CORS
 app.UseCors("ReactPolicy");
 
 app.UseAuthorization();

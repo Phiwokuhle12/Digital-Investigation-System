@@ -23,7 +23,20 @@ namespace DigitalInvestigationAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            // Investigation relationships
+            modelBuilder.Entity<InvestigationClass>()
+                .HasOne(i => i.Case)
+                .WithMany()
+                .HasForeignKey(i => i.CaseID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<InvestigationClass>()
+                .HasOne(i => i.Suspect)
+                .WithMany()
+                .HasForeignKey(i => i.SuspectID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
 
             // ==========================================
             // INITIAL CASE

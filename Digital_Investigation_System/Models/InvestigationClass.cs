@@ -4,20 +4,24 @@ namespace DigitalInvestigationAPI.Models
 {
     public class InvestigationClass
     {
-        [Key] 
+        [Key]
         public int InvestigationID { get; set; }
 
-        [Required] 
+        [Required]
         public int CaseID { get; set; }
 
-        [Required] 
+        [Required]
         public int SuspectID { get; set; }
 
         [Required]
-        public string Conclusion { get; set; } = ""; // Stores the user's drawn signature
+        public string Conclusion { get; set; } = "";
 
-
-        [Required] 
+        [Required]
         public DateTime DateStarted { get; set; }
+
+        // Relationships
+        public CaseClass? Case { get; set; }
+
+        public SuspectClass? Suspect { get; set; }
     }
 }
